@@ -6,4 +6,3 @@ app_1.default.listen(port, function () {
     console.log('Express server listening on port ' + port);
 });
 exports.default = app_1.default;
-//# sourceMappingURL=server.js.map

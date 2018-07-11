@@ -33,4 +33,3 @@ var TestModel = /** @class */ (function () {
     return TestModel;
 }());
 exports.default = new TestModel();
-//# sourceMappingURL=test.model.js.map

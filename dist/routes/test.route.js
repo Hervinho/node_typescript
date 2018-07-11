@@ -22,4 +22,3 @@ var TestRoute = /** @class */ (function () {
 }());
 //make sure to export the router, so all routes will be accessible from app.ts
 exports.default = new TestRoute().router;
-//# sourceMappingURL=test.route.js.map

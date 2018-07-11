@@ -6,4 +6,3 @@ exports.appRoutes = {
         testBaseUrl: '/test'
     }
 };
-//# sourceMappingURL=routes.js.map
