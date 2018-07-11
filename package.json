@@ -6,9 +6,9 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --exec ts-node ./lib/server.ts",
-    "start": "node ./dist/server.js",
-    "production": "npm start",
-    "test": "mocha ** ./dist/tests/*.test.js",
+    "start": "forever start ./dist/server.js",
+    "production": "npm \"npm start\"",
+    "test": "mocha --recursive ./dist/tests/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
   },
   "keywords": [],

@@ -9,7 +9,7 @@ let expect = require("expect");
 //let server = supertest.agent("http://localhost:4040");
 let server = supertest(app);
 
-// UNIT test begin
+// UNIT test begin.
 
 describe("**** Unit Testing ****", function(){
 
@@ -19,7 +19,7 @@ describe("**** Unit Testing ****", function(){
       .get("/test/")
       .expect(200) // THis is HTTP response
       .expect(function(result){
-        console.log('Body : ', result.body);
+        //console.log('Body : ', result.body);
         expect(typeof result.body.success).toBe('boolean');
         expect(result.body.success).toBe(true);
         expect(typeof result.body.message).toBe('string');
