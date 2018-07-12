@@ -1,20 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("mocha");
-var server_1 = require("server");
+var server_1 = require("../server");
 var supertest = require("supertest");
 var should = require("should");
 var expect = require("expect");
-//let expect = require("jest-extended");
 // This agent refers to PORT where the program is running.
-//let server = supertest.agent("http://localhost:4040");
 var server = supertest(server_1.default);
+// API URLs.
+var routes_config_1 = require("../config/routes.config");
+var route = routes_config_1.appRoutes.api.testBaseUrl;
 // UNIT test begin.
-describe("**** Unit Testing ****", function () {
+describe("**** Testing model: Test ****", function () {
     // #1 should return home page
-    it("should get all data.", function (done) {
+    it("should get all test data", function (done) {
         server
-            .get("/test/")
+            .get(route)
             .expect(200) // THis is HTTP response
             .expect(function (result) {
             //console.log('Body : ', result.body);

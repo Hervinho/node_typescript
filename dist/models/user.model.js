@@ -5,6 +5,9 @@ var mongoose_1 = require("mongoose");
 var bcrypt = require("bcrypt-nodejs");
 var User = /** @class */ (function () {
     function User() {
+        this.setup();
+    }
+    User.prototype.setup = function () {
         this.UserSchema = new mongoose_1.Schema({
             username: {
                 type: String,
@@ -43,12 +46,11 @@ var User = /** @class */ (function () {
                     console.log("Error: ", err);
                     return callback(err);
                 }
-                console.log("isMatch: ", isMatch);
                 callback(null, isMatch);
             });
         };
         this.UserSchema = mongoose.model("User", this.UserSchema);
-    }
+    };
     return User;
 }());
 exports.default = new User();

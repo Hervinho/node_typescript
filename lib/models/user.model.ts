@@ -6,8 +6,12 @@ import * as bcrypt from "bcrypt-nodejs";
 
 class User {
     public UserSchema;
-    public self;
+
     constructor () {
+        this.setup();
+    }
+
+    private setup(): void {
         this.UserSchema = new Schema({
             username: {
                 type: String,
@@ -47,7 +51,6 @@ class User {
                     console.log("Error: ", err);
                     return callback(err);
                 }
-                console.log("isMatch: ", isMatch);
                 callback(null, isMatch);
             });
         };

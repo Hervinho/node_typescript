@@ -9,23 +9,23 @@ let server = supertest(app);
 
 // API URLs.
 import { appRoutes } from "../config/routes.config";
-let route = appRoutes.api.testBaseUrl;
+import { isArray } from 'util';
+let route = appRoutes.api.userBaseUrl;
 
 // UNIT test begin.
 
-describe("**** Testing model: Test ****", function(){
-
-    // #1 should return home page
-    it("should get all test data", function(done) {
+describe("**** Testing model: User ****", function(){
+    this.timeout(3000);
+    it("should get all users.", function(done) {
       server
       .get(route)
       .expect(200) // THis is HTTP response
       .expect(function(result){
-        //console.log('Body : ', result.body);
+        //console.log('Result : ', result.body.data);
         expect(typeof result.body.success).toBe('boolean');
         expect(result.body.success).toBe(true);
-        expect(typeof result.body.message).toBe('string');
-        expect(typeof result.body.data[0]).toBe('object');
+        expect(Array.isArray(result.body.data)).toBe(true);
+        //expect(typeof result.body.data[0]).toBe('object');
       })
       .end(done);
     });
