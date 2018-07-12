@@ -1,5 +1,5 @@
 import 'mocha';
-import app from "../server";
+import app from "server";
 let supertest = require("supertest");
 let should = require("should");
 let expect = require("expect");

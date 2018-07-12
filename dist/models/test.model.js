@@ -4,9 +4,9 @@ var es6_promise_1 = require("es6-promise");
 var TestModel = /** @class */ (function () {
     function TestModel() {
         this.data = [
-            { id: 1, name: 'Bruce Wayne' },
-            { id: 2, name: 'Clark Kent' },
-            { id: 3, name: 'Harvey Dent' }
+            { id: 1, name: "Bruce Wayne" },
+            { id: 2, name: "Clark Kent" },
+            { id: 3, name: "Harvey Dent" }
         ];
     }
     ;
@@ -15,7 +15,7 @@ var TestModel = /** @class */ (function () {
         return new es6_promise_1.Promise(function (resolve, reject) {
             resolve({
                 success: true,
-                message: 'Received data!!!',
+                message: "Received data!!!",
                 data: _this.data ? _this.data : []
             });
         });
@@ -25,7 +25,7 @@ var TestModel = /** @class */ (function () {
         return new es6_promise_1.Promise(function (resolve, reject) {
             resolve({
                 success: true,
-                message: 'Received data!!!',
+                message: "Received data!!!",
                 data: _this.data ? _this.data.find(function (item) { return item.id == id; }) : null
             });
         });

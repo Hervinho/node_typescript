@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("mocha");
-var server_1 = require("../server");
+var server_1 = require("server");
 var supertest = require("supertest");
 var should = require("should");
 var expect = require("expect");

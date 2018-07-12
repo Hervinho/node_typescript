@@ -9,11 +9,11 @@ var TestRoute = /** @class */ (function () {
     }
     ;
     TestRoute.prototype.routes = function () {
-        this.router.get('/', function (req, res) {
+        this.router.get("/", function (req, res) {
             test_model_1.default.getAll()
                 .then(function (result) { return res.json(result); });
         });
-        this.router.get('/:id', function (req, res) {
+        this.router.get("/:id", function (req, res) {
             test_model_1.default.getFiltered(req.params.id)
                 .then(function (result) { return res.json(result); });
         });

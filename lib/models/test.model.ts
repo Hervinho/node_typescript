@@ -1,4 +1,4 @@
-import { Promise } from 'es6-promise';
+import { Promise } from "es6-promise";
 
 class TestModel {
 
@@ -6,9 +6,9 @@ class TestModel {
     
     constructor(){
         this.data = [
-            {id: 1, name: 'Bruce Wayne'},
-            {id: 2, name: 'Clark Kent'},
-            {id: 3, name: 'Harvey Dent'}
+            {id: 1, name: "Bruce Wayne"},
+            {id: 2, name: "Clark Kent"},
+            {id: 3, name: "Harvey Dent"}
         ];
     };
     
@@ -16,7 +16,7 @@ class TestModel {
         return new Promise((resolve, reject) => {
             resolve({ 
                 success: true,
-                message: 'Received data!!!',
+                message: "Received data!!!",
                 data: this.data ? this.data : []
             });
         });
@@ -26,7 +26,7 @@ class TestModel {
         return new Promise((resolve, reject) => {
             resolve({ 
                 success: true,
-                message: 'Received data!!!',
+                message: "Received data!!!",
                 data: this.data ? this.data.find((item) => item.id == id) : null
             });
         });

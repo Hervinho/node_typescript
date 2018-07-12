@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import TestModel from '../models/test.model';
+import TestModel from "../models/test.model";
 
 class TestRoute {
 
@@ -11,12 +11,12 @@ class TestRoute {
     public router;
 
     public routes() {
-        this.router.get('/', (req, res) => {
+        this.router.get("/", (req, res) => {
             TestModel.getAll()
                 .then((result) => res.json(result));
         });
 
-        this.router.get('/:id', (req, res) => {
+        this.router.get("/:id", (req, res) => {
             TestModel.getFiltered(req.params.id)
                 .then((result) => res.json(result));
         });
