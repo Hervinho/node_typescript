@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var es6_promise_1 = require("es6-promise");
-var TestModel = /** @class */ (function () {
+var TestModel = (function () {
     function TestModel() {
         this.data = [
             { id: 1, name: "Bruce Wayne" },

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose = require("mongoose");
 var mongoose_1 = require("mongoose");
 var bcrypt = require("bcrypt-nodejs");
-var User = /** @class */ (function () {
+var User = (function () {
     function User() {
         this.setup();
     }
@@ -39,7 +39,6 @@ var User = /** @class */ (function () {
                 return next();
             }
         });
-        // Note: Do not use arrow function because this function will fail.
         this.UserSchema.methods.comparePassword = function (passwd, callback) {
             bcrypt.compare(passwd, this.password, function (err, isMatch) {
                 if (err) {

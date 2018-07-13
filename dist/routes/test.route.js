@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var test_model_1 = require("../models/test.model");
-var TestRoute = /** @class */ (function () {
+var TestRoute = (function () {
     function TestRoute() {
         this.router = express_1.Router();
         this.routes();
@@ -20,5 +20,4 @@ var TestRoute = /** @class */ (function () {
     };
     return TestRoute;
 }());
-//make sure to export the router, so all routes will be accessible from app.ts
 exports.default = new TestRoute().router;

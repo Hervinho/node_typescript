@@ -4,7 +4,7 @@ var express_1 = require("express");
 var jwt = require("jsonwebtoken");
 var User = require("../models/user.model");
 var jwt_config_1 = require("../config/jwt.config");
-var UserRoute = /** @class */ (function () {
+var UserRoute = (function () {
     function UserRoute() {
         this.router = express_1.Router();
         this.routes();
@@ -13,14 +13,12 @@ var UserRoute = /** @class */ (function () {
     ;
     UserRoute.prototype.routes = function () {
         var _this = this;
-        //get all users.
         this.router.get("/", function (req, res) {
             _this.UserModel.find()
                 .then(function (users) {
                 res.json({ success: true, data: users });
             });
         });
-        //create a user.
         this.router.post("/", function (req, res) {
             if (!req.body.username || !req.body.password) {
                 res.json({ success: false, msg: "Please pass username and password." });
@@ -30,7 +28,6 @@ var UserRoute = /** @class */ (function () {
                     username: req.body.username,
                     password: req.body.password
                 });
-                // save the user
                 newUser.save(function (err, user) {
                     if (err) {
                         console.log(err);
@@ -40,7 +37,6 @@ var UserRoute = /** @class */ (function () {
                 });
             }
         });
-        //user login.
         this.router.post("/login", function (req, res) {
             if (!req.body.username || !req.body.password) {
                 res.json({ success: false, msg: "Please pass username and password." });
@@ -54,10 +50,8 @@ var UserRoute = /** @class */ (function () {
                     if (!user)
                         res.status(401).send({ success: false, msg: "Authentication failed. User not found." });
                     else {
-                        // check if password matches
                         user.comparePassword(req.body.password, function (err, isMatch) {
                             if (isMatch && !err) {
-                                //var token = jwt.sign(user.tojson(), secret);
                                 var token = jwt.sign(user.toObject(), jwt_config_1.secret);
                                 res.json({ success: true, token: "JWT " + token });
                             }
@@ -71,5 +65,4 @@ var UserRoute = /** @class */ (function () {
     };
     return UserRoute;
 }());
-//make sure to export the router, so all routes will be accessible from app.ts
 exports.default = new UserRoute().router;
