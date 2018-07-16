@@ -10,6 +10,3 @@
 
 * Local:
     - npm run dev: Run the app.
-
-* Remote dev/production
-    - npm start: Run the app.

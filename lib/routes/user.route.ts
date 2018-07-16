@@ -13,14 +13,44 @@ class UserRoute {
 
     public router;
     public UserModel;
+    private getToken(headers) {
+        let token;
+        if (headers && headers.authorization) {
+            let parted = headers.authorization.split(' ');
+            if (parted.length === 2) {
+                token = parted[1]; //remove JWT string from the token.
+            } else {
+                token = null;
+            }
+        } else {
+            token = null;
+        }
+
+        return token;
+    }
 
     public routes() {
         //get all users.
         this.router.get("/", (req, res) => {
-            this.UserModel.find()
-                .then(function(users){
-                  res.json({success: true, data: users});
+            let token = this.getToken(req.headers);
+
+            if (token) {
+                jwt.verify(token, secret, function(err, decoded) {
+                    if (err) {
+                        console.log(`Error : ${err}`);
+                        res.json({success: false, message: 'JWT verification failed.'});
+                    } else {
+                        console.log(`Decoded : ${JSON.stringify(decoded)}`);
+                        this.UserModel.find()
+                            .then(function(users){
+                            res.json({success: true, data: users});
+                            });
+                    }
                 });
+            } else {
+                res.json({success: false, message: 'Unauthorized: No token was received.'});
+            }
+
         });
 
         //create a user.

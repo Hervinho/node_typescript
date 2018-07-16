@@ -7,9 +7,7 @@
     "build": "tsc",
     "dev": "nodemon --exec ts-node ./lib/server.ts",
     "start": "forever start ./dist/server.js",
-    "production": "npm \"npm start\"",
-    "test": "mocha --recursive ./dist/tests/*.test.js",
-    "test-watch": "nodemon --exec \"npm test\""
+    "test": "mocha --recursive ./dist/tests/*.test.js"
   },
   "keywords": [],
   "author": "",
