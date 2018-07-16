@@ -2,6 +2,7 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
+import * as passport from "passport";
 import { Request, Response, Router } from "express";
 
 //Database config.
@@ -33,6 +34,7 @@ class App {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(this.auth);
+    this.app.use(passport.initialize());
   };
 
   private routes(): void {

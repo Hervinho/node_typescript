@@ -1,7 +1,9 @@
 import { Request, Response, Router } from "express";
 import * as jwt from "jsonwebtoken";
+import * as passport from "passport";
 import * as User from "../models/user.model";
 import { secret } from "../config/jwt.config";
+import * as PassportConfig from "../config/passport.config";
 
 class UserRoute {
 
@@ -9,6 +11,7 @@ class UserRoute {
         this.router = Router();
         this.routes();
         this.UserModel = User.default.UserSchema;
+        PassportConfig.default.config(passport);
     };
 
     public router;
@@ -29,10 +32,16 @@ class UserRoute {
         return token;
     }
 
+    private generateToken (usr) {
+       return jwt.sign(usr.toObject(), secret, { expiresIn: '1m' });
+       //return jwt.sign({ data: usr.toObject(), exp: Math.floor(Date.now() / 1000) + (2 * 60) }, secret);
+    }
+
     public routes() {
         //get all users.
-        this.router.get("/", (req, res) => {
+        this.router.get("/", passport.authenticate('jwt', { session: false}), (req, res) => {
             let token = this.getToken(req.headers);
+            let self = this;
 
             if (token) {
                 jwt.verify(token, secret, function(err, decoded) {
@@ -40,8 +49,8 @@ class UserRoute {
                         console.log(`Error : ${err}`);
                         res.json({success: false, message: 'JWT verification failed.'});
                     } else {
-                        console.log(`Decoded : ${JSON.stringify(decoded)}`);
-                        this.UserModel.find()
+                        //console.log(`Decoded : ${JSON.stringify(decoded)}`);
+                        self.UserModel.find()
                             .then(function(users){
                             res.json({success: true, data: users});
                             });
@@ -75,6 +84,7 @@ class UserRoute {
 
         //user login.
         this.router.post("/login", (req, res) => {
+            let self = this;
             if (!req.body.username || !req.body.password) {
                 res.json({success: false, msg: "Please pass username and password."});
             } else {
@@ -88,8 +98,7 @@ class UserRoute {
                       // check if password matches
                       user.comparePassword(req.body.password, function (err, isMatch) {
                         if (isMatch && !err) {
-                          //var token = jwt.sign(user.tojson(), secret);
-                          let token = jwt.sign(user.toObject(), secret);
+                          let token = self.generateToken(user);
                     
                           res.json({success: true, token: "JWT " + token});
                         } else res.status(401).send({success: false, msg: "Authentication failed. Wrong password."});
