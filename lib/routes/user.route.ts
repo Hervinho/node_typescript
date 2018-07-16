@@ -40,8 +40,8 @@ class UserRoute {
     public routes() {
         //get all users.
         this.router.get("/", passport.authenticate('jwt', { session: false}), (req, res) => {
-            let token = this.getToken(req.headers);
             let self = this;
+            let token = self.getToken(req.headers);
 
             if (token) {
                 jwt.verify(token, secret, function(err, decoded) {
