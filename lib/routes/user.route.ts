@@ -46,8 +46,7 @@ class UserRoute {
             if (token) {
                 jwt.verify(token, secret, function(err, decoded) {
                     if (err) {
-                        console.log(`Error : ${err}`);
-                        res.json({success: false, message: 'JWT verification failed.'});
+                        res.json({success: false, message: 'JWT verification failed.', error: err});
                     } else {
                         //console.log(`Decoded : ${JSON.stringify(decoded)}`);
                         self.UserModel.find()
