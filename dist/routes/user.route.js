@@ -55,7 +55,7 @@ var UserRoute = /** @class */ (function () {
                 });
             }
             else {
-                res.json({ success: false, message: 'Unauthorized: No token was received.' });
+                res.json({ success: false, data: null, message: 'Unauthorized: No token was received.' });
             }
         });
         //create a user.

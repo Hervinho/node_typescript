@@ -21,12 +21,11 @@ describe("**** Testing model: Test ****", function(){
       .get(route)
       .expect(200) // THis is HTTP response
       .expect(function(result){
-        console.log('Body : ', result.body);
+        //console.log('Body : ', result.body);
         expect(typeof result.body.success).toBe('boolean');
         expect(result.body.success).toBe(true);
         expect(typeof result.body.message).toBe('string');
         expect(Array.isArray(result.body.data)).toBe(true);
-        //expect(typeof result.body.data[0]).toBe('object');
       })
       .end(done);
     });

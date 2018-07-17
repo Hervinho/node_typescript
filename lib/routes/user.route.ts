@@ -51,12 +51,12 @@ class UserRoute {
                         //console.log(`Decoded : ${JSON.stringify(decoded)}`);
                         self.UserModel.find()
                             .then(function(users){
-                            res.json({success: true, data: users});
+                                res.json({success: true, data: users});
                             });
                     }
                 });
             } else {
-                res.json({success: false, message: 'Unauthorized: No token was received.'});
+                res.json({success: false, data: null, message: 'Unauthorized: No token was received.'});
             }
 
         });
