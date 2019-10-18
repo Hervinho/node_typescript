@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --exec ts-node ./lib/server.ts",
-    "start": "forever start ./dist/server.js",
+    "start": "node ./dist/server.js",
     "test": "mocha --recursive ./dist/tests/*.test.js"
   },
   "keywords": [],
